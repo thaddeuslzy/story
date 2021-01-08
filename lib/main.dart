@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import './pages/Page1.dart';
-import './pages/Page2.dart';
+import './pages/HomePage.dart';
 import './pages/Page3.dart';
 
 void main() {
@@ -14,7 +14,7 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       title: 'Story_v1',
       theme: ThemeData(
-        primarySwatch: Colors.pink,
+        primarySwatch: Colors.lightBlue,
         // For desktop platforms, the controls will be smaller and closer together (more dense) than on mobile platforms.
         visualDensity: VisualDensity.adaptivePlatformDensity,
       ),
@@ -25,15 +25,6 @@ class MyApp extends StatelessWidget {
 
 class MyHomePage extends StatefulWidget {
   MyHomePage({Key key, this.title}) : super(key: key);
-
-  // This is the home page. It is stateful, meaning it has a State object that 
-  // contains fields that affect how it looks.
-
-  // This class is the configuration for the state. It holds the values (in this
-  // case the title) provided by the parent (in this case the App widget) and
-  // used by the build method of the State. Fields in a Widget subclass are
-  // always marked "final".
-
   final String title;
 
   @override
@@ -59,16 +50,27 @@ class _MyHomePageState extends State<MyHomePage> {
   @override
   Widget build(BuildContext context) {
     // build() is rerun every time setState() is called.
-    // The Flutter framework has been optimized to make rerunning build methods
-    // fast, you can just rebuild anything that needs updating rather
-    // than individually change instances of widgets.
-    return PageView(
-    controller: _controller,
-    children: [
-      MyPage1Widget(),
-      MyPage2Widget(),
-      MyPage3Widget(),
-    ],
-  );
+    return Scaffold(
+      body: Padding(
+        padding: EdgeInsets.only(top: 20),
+        child: Container(
+          decoration: BoxDecoration( 
+            gradient: LinearGradient(
+              begin: Alignment.topLeft,
+              end: Alignment.bottomRight,
+              colors: [Colors.white, Colors.lightBlue]
+            ),
+          ),
+          child:PageView(
+            controller: _controller,
+            children: [
+              MyPage1Widget(),
+              HomePage(),
+              MyPage3Widget(),
+            ],
+          ),
+        ),
+      ),
+    );
   }
 }
